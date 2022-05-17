@@ -174,7 +174,8 @@ function nameValidation(e) {
     positiveValidation(nameField);
   } else {
     negativeValidation(nameField);
-    document.querySelector('span#name-hint').textContent = "Name must be at least 2 characters and contain no special characters."
+    document.querySelector("span#name-hint").textContent =
+      "Name must be at least 2 characters and contain no special characters.";
     e.preventDefault();
   }
 }
@@ -183,13 +184,15 @@ function nameValidation(e) {
 function emailValidation(e) {
   if (isValidEmail(emailField.value.toLowerCase())) {
     positiveValidation(emailField);
-  } else if (emailField.value.length === 0){
+  } else if (emailField.value.length === 0) {
     negativeValidation(emailField);
-    document.querySelector('span#email-hint').textContent = "Please enter an email.";
+    document.querySelector("span#email-hint").textContent =
+      "Please enter an email.";
     e.preventDefault();
   } else {
     negativeValidation(emailField);
-    document.querySelector('span#email-hint').textContent = "Email doesn't include all three: @ . and tld";
+    document.querySelector("span#email-hint").textContent =
+      "Email doesn't include all three: @ . and tld";
     e.preventDefault();
   }
 }
