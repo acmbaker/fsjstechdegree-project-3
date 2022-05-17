@@ -2,7 +2,7 @@
   Base and header styles
 ==================================== */
 
-@import url('https://fonts.googleapis.com/css?family=Nunito|Roboto+Mono');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 
 * {
   box-sizing: border-box;
@@ -17,19 +17,35 @@ html {
 body,
 input,
 button {
-	font-family: 'Nunito', sans-serif;
+	font-family: 'Lato', sans-serif;
 }
 
 body {
   background: rgba(218, 174, 81, 0.1);
 }
 
+/* Added a nice background colour changer to the header with transition */
 header {
 	text-align: center;
 	color: rgb(255, 255, 255);
 	width: 100%;
 	padding: 10px 0;
-	background: linear-gradient(90deg, rgba(213, 51, 105, 1) 0%, rgba(218, 174, 81, 1) 100%);
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  transition: 0.4s;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .header-container {
@@ -38,9 +54,9 @@ header {
 }
 
 h1 {
-	font-size: 2.5em;
-	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.65);
+	font-size: 50px;
 	margin: 0;
+  font-weight: bold;
 }
 
 p {
@@ -111,7 +127,7 @@ select {
 input, 
 select, 
 option {
-  font-family: 'roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
   transition: all 0.3s ease-out;
 }
 
@@ -324,7 +340,7 @@ button:hover {
 }
 
 .activities-box {
-  font-family: 'roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
   max-width: 100%;
   border-radius: 3px;
   border: 1px solid transparent;
