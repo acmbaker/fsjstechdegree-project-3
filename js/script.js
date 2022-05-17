@@ -7,6 +7,7 @@ let otherField = document.querySelector("input#other-job-role");
 //Shirts
 let selectColorSection = document.querySelector("div#shirt-colors");
 let selectColorDropdown = document.querySelector("select#color");
+let selectColorList = document.querySelectorAll("select#color option");
 let selectDesign = document.querySelector("select#design");
 let jsPunsColors = document.querySelectorAll('option[data-theme="js puns"]');
 let heartJsColors = document.querySelectorAll('option[data-theme="heart js"]');
@@ -35,9 +36,10 @@ window.addEventListener("load", (e) => {
   //Focus on the input name field
   nameField.focus();
   //Other field hide on initial load
-  otherField.style.display = "none";
+  otherField.style.display = 'none';
+
   //Select colour field hidden on initial load
-  selectColorSection.style.display = "none";
+  selectColorDropdown.disabled = true;
   //Default credit card payment option selected
   creditCard.setAttribute("selected", "");
   //Hide PayPal and Bitcoin section on initial load
@@ -48,15 +50,27 @@ window.addEventListener("load", (e) => {
 //Display other field if 'other' option is selected for job role
 selectJobRole.addEventListener("input", (e) => {
   if (e.target.value === "other") {
-    otherField.style.display = "";
+    otherField.style.display = '';
+  } else {
+    otherField.style.display = 'none';
   }
 });
 
 //Checking for which t-shirt design is selected and calling function
 selectDesign.addEventListener("change", (e) => {
   if (e.target.value === "js puns") {
+    for (let i = 0; i < selectColorList.length; i++) {
+      selectColorList[i].removeAttribute('selected');
+    }
+    document.querySelector('select#color option[data-theme="js puns"]').setAttribute('selected', '', '');
+    selectColorDropdown.disabled = false;
     colorChoices("puns");
   } else if (e.target.value === "heart js") {
+    for (let i = 0; i < selectColorList.length; i++) {
+      selectColorList[i].removeAttribute('selected');
+    }
+    document.querySelector('select#color option[data-theme="heart js"]').setAttribute('selected', '', '');
+    selectColorDropdown.disabled = false;
     colorChoices("heart");
   }
 });
@@ -174,8 +188,6 @@ function nameValidation(e) {
     positiveValidation(nameField);
   } else {
     negativeValidation(nameField);
-    document.querySelector("span#name-hint").textContent =
-      "Name must be at least 2 characters and contain no special characters.";
     e.preventDefault();
   }
 }
@@ -241,7 +253,7 @@ function isValidName(name) {
   let regex = /^[a-z ,.'-]+$/i;
 
   //Checking that name matches regex & name length is greater than 1 character
-  if (regex.test(name) && name.length > 1) {
+  if (regex.test(name)) {
     return true;
   } else {
     return false;
@@ -269,12 +281,11 @@ function isValidActivities(checkBoxes) {
 //Checking that the card details are valid
 function isValidCC(card, zip, cvv) {
   //Visa, MasterCard, American Express, Diners Club, Discover, and JCB cards
-  let regexForCD =
-    /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/;
+  let regexForCD = /^([0-9]{13})?([0-9]{14})?([0-9]{15})?([0-9]{16})?$/;
   //Allowing both the five-digit and nine-digit ZIP code formats
   let regexForZip = /^[0-9]{5}(?:-[0-9]{4})?$/;
-  //Allows for 3 or 4 digit CVV's
-  let regexForCvv = /^[0-9]{3,4}$/;
+  //Allows for 3 digit CVV's
+  let regexForCvv = /^[0-9]{3}$/;
   let counter = 0;
 
   //Card validation checks: test number 4484070000000000 / 4484 0700 0000 0000
