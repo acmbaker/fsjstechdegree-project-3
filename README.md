@@ -10,7 +10,7 @@ Using the supplied HTML and CSS files, you'll add your own JavaScript to make th
 Adding customized and conditional behavior and interactivity
 Validating user input and providing helpful error messages when the user enters invalid information into the form fields.
 
-## Exceeds Expectations
+## Exceeds Expectations Requirements
 Real-time error message - on lines 157 - 169, I added an event listener for 'keyup' that will listen to any typing in the relevant fields and call the relevant functions from the event listeners.
 
 Conditional error message - on lines 182 - 195, there are custom error messages that appear to enable the user to understand why their email input is or isn't working.
