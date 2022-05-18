@@ -36,7 +36,7 @@ window.addEventListener("load", (e) => {
   //Focus on the input name field
   nameField.focus();
   //Other field hide on initial load
-  otherField.style.display = 'none';
+  otherField.style.display = "none";
 
   //Select colour field hidden on initial load
   selectColorDropdown.disabled = true;
@@ -50,9 +50,9 @@ window.addEventListener("load", (e) => {
 //Display other field if 'other' option is selected for job role
 selectJobRole.addEventListener("input", (e) => {
   if (e.target.value === "other") {
-    otherField.style.display = '';
+    otherField.style.display = "";
   } else {
-    otherField.style.display = 'none';
+    otherField.style.display = "none";
   }
 });
 
@@ -60,16 +60,20 @@ selectJobRole.addEventListener("input", (e) => {
 selectDesign.addEventListener("change", (e) => {
   if (e.target.value === "js puns") {
     for (let i = 0; i < selectColorList.length; i++) {
-      selectColorList[i].removeAttribute('selected');
+      selectColorList[i].removeAttribute("selected");
     }
-    document.querySelector('select#color option[data-theme="js puns"]').setAttribute('selected', '', '');
+    document
+      .querySelector('select#color option[data-theme="js puns"]')
+      .setAttribute("selected", "", "");
     selectColorDropdown.disabled = false;
     colorChoices("puns");
   } else if (e.target.value === "heart js") {
     for (let i = 0; i < selectColorList.length; i++) {
-      selectColorList[i].removeAttribute('selected');
+      selectColorList[i].removeAttribute("selected");
     }
-    document.querySelector('select#color option[data-theme="heart js"]').setAttribute('selected', '', '');
+    document
+      .querySelector('select#color option[data-theme="heart js"]')
+      .setAttribute("selected", "", "");
     selectColorDropdown.disabled = false;
     colorChoices("heart");
   }
@@ -295,7 +299,8 @@ function isValidCC(card, zip, cvv) {
   } else if (/[a-zA-Z]/.test(card)) {
     counter--;
     negativeValidation(cardSelector);
-    document.querySelector('span#cc-hint').textContent ='Card number must contain no letters.';
+    document.querySelector("span#cc-hint").textContent =
+      "Card number must contain no letters.";
   } else {
     counter--;
     negativeValidation(cardSelector);
@@ -308,7 +313,8 @@ function isValidCC(card, zip, cvv) {
   } else if (/[a-zA-Z]/.test(zip)) {
     counter--;
     negativeValidation(zipSelector);
-    document.querySelector('span#zip-hint').textContent ='Zip code must contain no letters.';
+    document.querySelector("span#zip-hint").textContent =
+      "Zip code must contain no letters.";
   } else {
     counter--;
     negativeValidation(zipSelector);
@@ -321,7 +327,8 @@ function isValidCC(card, zip, cvv) {
   } else if (/[a-zA-Z]/.test(cvv)) {
     counter--;
     negativeValidation(cvvSelector);
-    document.querySelector('span#cvv-hint').textContent ='CVV must contain no letters.';
+    document.querySelector("span#cvv-hint").textContent =
+      "CVV must contain no letters.";
   } else {
     counter--;
     negativeValidation(cvvSelector);
