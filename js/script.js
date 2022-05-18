@@ -230,9 +230,9 @@ function activityValidation(e) {
 function creditCardValidation(e) {
   //Credit card
   if (selectedPaymentMethod.value === "credit-card") {
-    let cc = parseInt(cardSelector.value.replaceAll(" ", ""));
-    let zip = parseInt(zipSelector.value.replaceAll(" ", ""));
-    let cvv = parseInt(cvvSelector.value.replaceAll(" ", ""));
+    let cc = cardSelector.value.replaceAll(" ", "");
+    let zip = zipSelector.value.replaceAll(" ", "");
+    let cvv = cvvSelector.value.replaceAll(" ", "");
 
     if (!isValidCC(cc, zip, cvv)) {
       e.preventDefault();
@@ -283,33 +283,45 @@ function isValidCC(card, zip, cvv) {
   //Visa, MasterCard, American Express, Diners Club, Discover, and JCB cards
   let regexForCD = /^([0-9]{13})?([0-9]{14})?([0-9]{15})?([0-9]{16})?$/;
   //Allowing both the five-digit and nine-digit ZIP code formats
-  let regexForZip = /^[0-9]{5}(?:-[0-9]{4})?$/;
+  let regexForZip = /^[0-9]{5}$/;
   //Allows for 3 digit CVV's
   let regexForCvv = /^[0-9]{3}$/;
   let counter = 0;
 
-  //Card validation checks: test number 4484070000000000 / 4484 0700 0000 0000
-  if (regexForCD.test(card)) {
+  //Card validation checks
+  if (regexForCD.test(card) && card.length > 12 && card.length < 17) {
     counter++;
     positiveValidation(cardSelector);
+  } else if (/[a-zA-Z]/.test(card)) {
+    counter--;
+    negativeValidation(cardSelector);
+    document.querySelector('span#cc-hint').textContent ='Card number must contain no letters.';
   } else {
     counter--;
     negativeValidation(cardSelector);
   }
 
   //Zip code validation checks: test number 12345
-  if (regexForZip.test(zip)) {
+  if (regexForZip.test(zip) && zip.length === 5) {
     counter++;
     positiveValidation(zipSelector);
+  } else if (/[a-zA-Z]/.test(zip)) {
+    counter--;
+    negativeValidation(zipSelector);
+    document.querySelector('span#zip-hint').textContent ='Zip code must contain no letters.';
   } else {
     counter--;
     negativeValidation(zipSelector);
   }
 
   //CVV validation checks: test number 123
-  if (regexForCvv.test(cvv)) {
+  if (regexForCvv.test(cvv) && cvv.length === 3) {
     counter++;
     positiveValidation(cvvSelector);
+  } else if (/[a-zA-Z]/.test(cvv)) {
+    counter--;
+    negativeValidation(cvvSelector);
+    document.querySelector('span#cvv-hint').textContent ='CVV must contain no letters.';
   } else {
     counter--;
     negativeValidation(cvvSelector);

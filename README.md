@@ -13,7 +13,7 @@ Validating user input and providing helpful error messages when the user enters 
 ## Exceeds Expectations Requirements
 Real-time error message - on lines 171 - 183, I added an event listener for 'keyup' that will listen to any typing in the relevant fields and call the relevant functions from the event listeners.
 
-Conditional error message - on lines 195 - 210, there are custom error messages that appear to enable the user to understand why their email input is or isn't working.
+Conditional error message - on lines 195 - 210, there are custom error messages that appear to enable the user to understand why their email input is or isn't working. Between lines 291-328 there are further custom error messages that appear, for example if the user inputs a letter in the credit card field.
 
 ## Outcome
 Everything is functioning as per the brief and exceeded grade requirements.
